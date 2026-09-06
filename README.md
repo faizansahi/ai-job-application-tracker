@@ -1,7 +1,5 @@
 # AI Job Application Tracker
 
-[![CI](https://github.com/OWNER/ai-job-application-tracker/actions/workflows/ci.yml/badge.svg)](https://github.com/OWNER/ai-job-application-tracker/actions)
-
 Production-style FastAPI backend for managing vacancies and application stages, comparing CV text with job requirements, and exposing funnel analytics. It solves a real candidate-operations problem while remaining useful without paid AI APIs.
 
 ```mermaid
