@@ -44,4 +44,5 @@ def upgrade():
 def downgrade():
     op.drop_table("applications")
     op.drop_table("jobs")
-    sa.Enum(name="stage").drop(op.get_bind())
+    if op.get_bind().dialect.name == "postgresql":
+        sa.Enum(name="stage").drop(op.get_bind())

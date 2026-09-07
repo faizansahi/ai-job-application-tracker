@@ -3,8 +3,10 @@ from contextlib import asynccontextmanager
 
 from fastapi import Depends, FastAPI, HTTPException, Query
 from sqlalchemy import or_, select
+from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 
+from .config import get_settings
 from .db import Base, engine, get_session
 from .models import Application, Job
 from .schemas import (
@@ -17,7 +19,9 @@ from .schemas import (
 )
 from .services import analyze_match, stage_statistics
 
-logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s %(message)s")
+logging.basicConfig(
+    level=get_settings().log_level, format="%(asctime)s %(levelname)s %(name)s %(message)s"
+)
 
 
 @asynccontextmanager
@@ -81,7 +85,12 @@ def analyze_resume(payload: ResumeRequest, db: Session = Depends(get_session)):
     job = db.get(Job, payload.job_id)
     if not job:
         raise HTTPException(404, "Job not found")
-    return analyze_match(payload.text, job.description)
+    result = analyze_match(payload.text, job.description)
+    application = db.scalar(select(Application).where(Application.job_id == job.id))
+    if application:
+        application.match_score = result["score"]
+        db.commit()
+    return result
 
 
 @app.post("/applications", response_model=ApplicationRead, status_code=201)
@@ -92,7 +101,11 @@ def create_application(payload: ApplicationCreate, db: Session = Depends(get_ses
         raise HTTPException(409, "Application already exists")
     row = Application(**payload.model_dump())
     db.add(row)
-    db.commit()
+    try:
+        db.commit()
+    except IntegrityError as exc:
+        db.rollback()
+        raise HTTPException(409, "Application already exists") from exc
     return row
 
 

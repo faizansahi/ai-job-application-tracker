@@ -1,10 +1,20 @@
+import os
+
 from alembic import context
+from dotenv import load_dotenv
 from sqlalchemy import engine_from_config, pool
 
 from job_tracker import models  # noqa: F401
 from job_tracker.db import Base
 
+load_dotenv()
 config = context.config
+config.set_main_option(
+    "sqlalchemy.url",
+    os.getenv("JOB_TRACKER_DATABASE_URL", config.get_main_option("sqlalchemy.url")).replace(
+        "%", "%%"
+    ),
+)
 target_metadata = Base.metadata
 
 

@@ -27,6 +27,7 @@ class ApplicationCreate(BaseModel):
 
 
 class ApplicationPatch(BaseModel):
+    match_score: float | None = Field(default=None, ge=0, le=100)
     stage: Stage | None = None
     notes: str | None = Field(default=None, max_length=5000)
 

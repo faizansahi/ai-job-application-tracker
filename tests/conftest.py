@@ -23,3 +23,4 @@ def client(tmp_path):
     with TestClient(app) as value:
         yield value
     app.dependency_overrides.clear()
+    engine.dispose()
