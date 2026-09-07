@@ -50,7 +50,7 @@ Python 3.12, FastAPI, Pydantic, SQLAlchemy, PostgreSQL/SQLite, Alembic, Docker C
 
 The live demo created one fictional application, moved it to Interview, and returned an **80% skill overlap**: four of five listed skills matched, with PostgreSQL missing. The analytics endpoint returned the same saved score. This is a skill-overlap result, not an ATS acceptance prediction.
 
-[Actual output](docs/results/demo.json) · [Test report](docs/results/tests.txt) · [Provenance](docs/results/provenance.md) · [Verification status](docs/results/verification.md)
+[Actual output](docs/results/demo.json) · [PostgreSQL container results](docs/results/docker-demo.json) · [Test report](docs/results/tests.txt) · [Provenance](docs/results/provenance.md) · [Verification status](docs/results/verification.md)
 
 Reproduce using a fresh local database and a running API:
 
