@@ -12,6 +12,11 @@ Created a fictional vacancy and application, computed 80% skill overlap, moved t
 Absolute virtual-environment paths in reports are replaced with `<venv>` for portability.
 The test report retains upstream FastAPI/Starlette deprecation warnings.
 
-Docker is unavailable on the local Windows machine. Container checks run separately
-on GitHub-hosted Ubuntu with PostgreSQL 16. The current workflow is linked from the README;
-the final container evidence is recorded below after its run completes.
+Docker is unavailable on the local Windows machine. [CI run 34073497081](https://github.com/faizansahi/ai-job-application-tracker/actions/runs/34073497081)
+passed quality and container jobs on GitHub-hosted Ubuntu with PostgreSQL 16.
+This includes dependency installation, tests, lint, formatting, Compose validation,
+image build, and the running container workflow.
+
+The container created a job and application, computed a 66.7% match from an explicit fixture, updated the stage, and verified the saved analytics score.
+
+[Downloaded container results](docker-demo.json) are the actual artifact from that run.
