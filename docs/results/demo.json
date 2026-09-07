@@ -12,20 +12,20 @@
     "method": "POST",
     "path": "/jobs",
     "request": {
-      "title": "Python Werkstudent",
+      "title": "Python Backend Developer",
       "company": "Sample Logistics GmbH",
       "location": "Berlin",
       "description": "Python FastAPI PostgreSQL Docker Git experience required"
     },
     "status": 201,
     "response": {
-      "title": "Python Werkstudent",
+      "title": "Python Backend Developer",
       "company": "Sample Logistics GmbH",
       "location": "Berlin",
       "description": "Python FastAPI PostgreSQL Docker Git experience required",
       "source_url": null,
       "id": 1,
-      "created_at": "2026-09-07T00:41:36.505038Z"
+      "created_at": "2026-09-07T01:30:09.142469Z"
     }
   },
   {
@@ -43,7 +43,7 @@
       "stage": "Applied",
       "notes": "Fictional demo application",
       "match_score": null,
-      "updated_at": "2026-09-07T00:41:36.534392Z"
+      "updated_at": "2026-09-07T01:30:09.172600Z"
     }
   },
   {
@@ -81,7 +81,7 @@
       "stage": "Interview",
       "notes": "Fictional demo application",
       "match_score": 80.0,
-      "updated_at": "2026-09-07T00:41:36.577654Z"
+      "updated_at": "2026-09-07T01:30:09.202685Z"
     }
   },
   {
